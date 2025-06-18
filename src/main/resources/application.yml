@@ -1,0 +1,8 @@
+spring:
+    application:
+        name: profile_service
+    jpa:
+        hibernate:
+            ddl-auto: update
+server:
+    port: ${PROFILE_SERVICE_PORT}

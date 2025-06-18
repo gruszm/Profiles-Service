@@ -37,13 +37,13 @@ public class DatabaseConfig
 
         return DataSourceBuilder.create()
                 .driverClassName("org.postgresql.Driver")
-                .url(getDataSourceUrl(dbServiceName))
+                .url(getDataSourceUrl())
                 .username(dbUsername)
                 .password(dbPassword)
                 .build();
     }
 
-    private String getDataSourceUrl(String dbServiceName)
+    private String getDataSourceUrl()
     {
         return "jdbc:postgresql://"
                 + dbServiceName + ":"

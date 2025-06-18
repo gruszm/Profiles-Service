@@ -1,9 +1,10 @@
-package pl.gruszm.carts_service.DTOs;
+package pl.gruszm.profile_service.DTOs;
 
 public class UserHeader
 {
     private long id;
     private String email;
+    private boolean hasElevatedRights;
 
     public long getId()
     {
@@ -23,5 +24,15 @@ public class UserHeader
     public void setEmail(String email)
     {
         this.email = email;
+    }
+
+    public boolean isHasElevatedRights()
+    {
+        return hasElevatedRights;
+    }
+
+    public void setHasElevatedRights(boolean hasElevatedRights)
+    {
+        this.hasElevatedRights = hasElevatedRights;
     }
 }

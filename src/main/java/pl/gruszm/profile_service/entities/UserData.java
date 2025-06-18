@@ -13,6 +13,9 @@ public class UserData
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     @Column(name = "first_name", nullable = false)
     @NotBlank(message = "First name is required.")
     private String firstName;
@@ -37,6 +40,16 @@ public class UserData
     public Long getId()
     {
         return id;
+    }
+
+    public Long getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(Long userId)
+    {
+        this.userId = userId;
     }
 
     public String getFirstName()

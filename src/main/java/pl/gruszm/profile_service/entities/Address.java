@@ -12,6 +12,9 @@ public class Address
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     @NotBlank
     @Column(name = "street", nullable = false)
     private String street;
@@ -42,6 +45,16 @@ public class Address
     public long getId()
     {
         return id;
+    }
+
+    public Long getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(Long userId)
+    {
+        this.userId = userId;
     }
 
     public String getStreet()
