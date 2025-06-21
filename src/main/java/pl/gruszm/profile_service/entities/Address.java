@@ -12,19 +12,24 @@ public class Address
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
+    @NotNull
+    @Min(value = 0, message = "User ID must be 0 or higher.")
     private Long userId;
 
     @NotBlank
     @Column(name = "street", nullable = false)
     private String street;
 
-    @NotBlank
+    @NotNull
+    @Min(value = 1, message = "House number must be above 0.")
     @Column(name = "house_number", nullable = false)
-    private String houseNumber;
+    private Short houseNumber;
 
+    @NotNull
+    @Min(value = 1, message = "Apartment number must be above 0.")
     @Column(name = "apartment_number")
-    private String apartmentNumber;
+    private Short apartmentNumber;
 
     @NotBlank
     @Pattern(regexp = "\\d{2}-\\d{3}")
@@ -35,8 +40,9 @@ public class Address
     @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "province", nullable = false)
-    private String province;
+    @NotBlank
+    @Column(name = "voivodeship", nullable = false)
+    private String voivodeship;
 
     @NotBlank
     @Column(name = "country", nullable = false)
@@ -52,9 +58,11 @@ public class Address
         return userId;
     }
 
-    public void setUserId(Long userId)
+    public Address setUserId(Long userId)
     {
         this.userId = userId;
+
+        return this;
     }
 
     public String getStreet()
@@ -62,29 +70,35 @@ public class Address
         return street;
     }
 
-    public void setStreet(String street)
+    public Address setStreet(String street)
     {
         this.street = street;
+
+        return this;
     }
 
-    public String getHouseNumber()
+    public Short getHouseNumber()
     {
         return houseNumber;
     }
 
-    public void setHouseNumber(String houseNumber)
+    public Address setHouseNumber(Short houseNumber)
     {
         this.houseNumber = houseNumber;
+
+        return this;
     }
 
-    public String getApartmentNumber()
+    public Short getApartmentNumber()
     {
         return apartmentNumber;
     }
 
-    public void setApartmentNumber(String apartmentNumber)
+    public Address setApartmentNumber(Short apartmentNumber)
     {
         this.apartmentNumber = apartmentNumber;
+
+        return this;
     }
 
     public String getPostalCode()
@@ -92,9 +106,11 @@ public class Address
         return postalCode;
     }
 
-    public void setPostalCode(String postalCode)
+    public Address setPostalCode(String postalCode)
     {
         this.postalCode = postalCode;
+
+        return this;
     }
 
     public String getCity()
@@ -102,19 +118,23 @@ public class Address
         return city;
     }
 
-    public void setCity(String city)
+    public Address setCity(String city)
     {
         this.city = city;
+
+        return this;
     }
 
-    public String getProvince()
+    public String getVoivodeship()
     {
-        return province;
+        return voivodeship;
     }
 
-    public void setProvince(String province)
+    public Address setVoivodeship(String voivodeship)
     {
-        this.province = province;
+        this.voivodeship = voivodeship;
+
+        return this;
     }
 
     public String getCountry()
@@ -122,8 +142,10 @@ public class Address
         return country;
     }
 
-    public void setCountry(String country)
+    public Address setCountry(String country)
     {
         this.country = country;
+
+        return this;
     }
 }
