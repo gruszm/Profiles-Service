@@ -1,0 +1,34 @@
+# Image for building the application .jar
+FROM maven:3.9.4-eclipse-temurin-17 AS builder
+
+WORKDIR /build
+
+COPY pom.xml .
+COPY src/main ./src/main
+
+RUN mvn clean package -DskipTests
+
+# Image for running the application
+FROM openjdk:17-jdk-alpine
+
+WORKDIR /profile_service
+
+COPY --from=builder /build/target/*.jar app.jar
+
+ARG PROFILE_SERVICE_PORT
+ARG PROFILE_DB_SERVICE_NAME
+ARG PROFILE_DB_SERVICE_PORT
+ARG PROFILE_DB_USER
+ARG PROFILE_DB_PASSWORD
+ARG PROFILE_DB_NAME
+
+ENV PROFILE_SERVICE_PORT=${PROFILE_SERVICE_PORT}
+ENV PROFILE_DB_SERVICE_NAME=${PROFILE_DB_SERVICE_NAME}
+ENV PROFILE_DB_SERVICE_PORT=${PROFILE_DB_SERVICE_PORT}
+ENV PROFILE_DB_USER=${PROFILE_DB_USER}
+ENV PROFILE_DB_PASSWORD=${PROFILE_DB_PASSWORD}
+ENV PROFILE_DB_NAME=${PROFILE_DB_NAME}
+
+EXPOSE ${PROFILE_SERVICE_PORT}
+
+CMD [ "java", "-jar", "app.jar" ]
