@@ -26,7 +26,6 @@ public class Address
     @Column(name = "house_number", nullable = false)
     private Short houseNumber;
 
-    @NotNull
     @Min(value = 1, message = "Apartment number must be above 0.")
     @Column(name = "apartment_number")
     private Short apartmentNumber;
