@@ -1,13 +1,13 @@
-package pl.gruszm.profile_service.services;
+package pl.gruszm.profiles_service.services;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.gruszm.profile_service.DTOs.AddressDTO;
-import pl.gruszm.profile_service.entities.Address;
-import pl.gruszm.profile_service.repositories.AddressRepository;
+import pl.gruszm.profiles_service.DTOs.AddressDTO;
+import pl.gruszm.profiles_service.entities.Address;
+import pl.gruszm.profiles_service.repositories.AddressRepository;
 
 import java.util.List;
 import java.util.Set;

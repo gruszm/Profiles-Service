@@ -1,4 +1,4 @@
-package pl.gruszm.profile_service.controllers;
+package pl.gruszm.profiles_service.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,9 +6,9 @@ import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.gruszm.profile_service.DTOs.AddressDTO;
-import pl.gruszm.profile_service.DTOs.UserHeader;
-import pl.gruszm.profile_service.services.AddressService;
+import pl.gruszm.profiles_service.DTOs.AddressDTO;
+import pl.gruszm.profiles_service.DTOs.UserHeader;
+import pl.gruszm.profiles_service.services.AddressService;
 
 import java.util.HashMap;
 import java.util.Map;

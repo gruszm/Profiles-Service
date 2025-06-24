@@ -1,4 +1,4 @@
-package pl.gruszm.profile_service.config;
+package pl.gruszm.profiles_service.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -10,19 +10,19 @@ import javax.sql.DataSource;
 @Configuration
 public class DatabaseConfig
 {
-    @Value("${PROFILE_DB_USER}")
+    @Value("${PROFILES_DB_USER}")
     private String dbUsername;
 
-    @Value("${PROFILE_DB_PASSWORD}")
+    @Value("${PROFILES_DB_PASSWORD}")
     private String dbPassword;
 
-    @Value("${PROFILE_DB_SERVICE_NAME}")
+    @Value("${PROFILES_DB_SERVICE_NAME}")
     private String dbServiceName;
 
-    @Value("${PROFILE_DB_SERVICE_PORT}")
+    @Value("${PROFILES_DB_SERVICE_PORT}")
     private String dbServicePort;
 
-    @Value("${PROFILE_DB_NAME}")
+    @Value("${PROFILES_DB_NAME}")
     private String dbName;
 
     @Bean

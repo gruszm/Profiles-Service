@@ -1,6 +1,6 @@
-package pl.gruszm.profile_service.DTOs;
+package pl.gruszm.profiles_service.DTOs;
 
-import pl.gruszm.profile_service.entities.Address;
+import pl.gruszm.profiles_service.entities.Address;
 
 public class AddressDTO
 {

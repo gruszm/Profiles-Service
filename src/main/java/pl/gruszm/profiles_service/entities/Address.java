@@ -1,4 +1,4 @@
-package pl.gruszm.profile_service.entities;
+package pl.gruszm.profiles_service.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

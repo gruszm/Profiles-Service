@@ -1,4 +1,4 @@
-package pl.gruszm.profile_service.services;
+package pl.gruszm.profiles_service.services;
 
 import jakarta.validation.Validation;
 import jakarta.validation.ValidationException;
@@ -10,9 +10,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.gruszm.profile_service.DTOs.AddressDTO;
-import pl.gruszm.profile_service.entities.Address;
-import pl.gruszm.profile_service.repositories.AddressRepository;
+import pl.gruszm.profiles_service.DTOs.AddressDTO;
+import pl.gruszm.profiles_service.entities.Address;
+import pl.gruszm.profiles_service.repositories.AddressRepository;
 
 import java.util.List;
 

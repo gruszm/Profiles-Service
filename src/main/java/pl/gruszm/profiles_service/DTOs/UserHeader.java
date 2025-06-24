@@ -1,4 +1,4 @@
-package pl.gruszm.profile_service.DTOs;
+package pl.gruszm.profiles_service.DTOs;
 
 public class UserHeader
 {

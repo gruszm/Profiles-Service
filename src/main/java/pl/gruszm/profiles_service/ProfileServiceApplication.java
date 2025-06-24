@@ -1,4 +1,4 @@
-package pl.gruszm.profile_service;
+package pl.gruszm.profiles_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
