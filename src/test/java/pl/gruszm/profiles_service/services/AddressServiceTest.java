@@ -106,7 +106,6 @@ class AddressServiceTest
         assertTrue(errorMessage.contains("userId"));
         assertTrue(errorMessage.contains("street"));
         assertTrue(errorMessage.contains("houseNumber"));
-        assertTrue(errorMessage.contains("apartmentNumber"));
         assertTrue(errorMessage.contains("postalCode"));
         assertTrue(errorMessage.contains("city"));
         assertTrue(errorMessage.contains("voivodeship"));
@@ -122,7 +121,7 @@ class AddressServiceTest
         addressDTO.setUserId(-5L); // Invalid
         addressDTO.setStreet("Nowa"); // Valid
         addressDTO.setHouseNumber((short) 2); // Valid
-        addressDTO.setApartmentNumber(null); // Invalid
+        addressDTO.setApartmentNumber(null); // Valid
         addressDTO.setPostalCode("12345"); // Invalid
         addressDTO.setCity("Warszawa"); // Valid
         addressDTO.setVoivodeship("Mazowieckie"); // Valid
@@ -134,9 +133,9 @@ class AddressServiceTest
         String errorMessage = exception.getMessage();
 
         assertTrue(errorMessage.contains("userId"));
-        assertTrue(errorMessage.contains("apartmentNumber"));
         assertTrue(errorMessage.contains("postalCode"));
 
+        assertFalse(errorMessage.contains("apartmentNumber"));
         assertFalse(errorMessage.contains("street"));
         assertFalse(errorMessage.contains("houseNumber"));
         assertFalse(errorMessage.contains("city"));
