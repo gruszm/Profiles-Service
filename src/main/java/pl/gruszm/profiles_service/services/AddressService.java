@@ -22,14 +22,23 @@ public class AddressService
     @Autowired
     private Validator validator;
 
-    public List<Address> getAddressesByUserId(Long userId) throws IllegalArgumentException
+    public List<AddressDTO> getAddressesByUserId(Long userId) throws IllegalArgumentException
     {
         if (userId < 0L)
         {
             throw new IllegalArgumentException("Illegal argument: userId must not be negative.");
         }
 
-        return addressRepository.findByUserId(userId);
+        List<Address> addresses = addressRepository.findByUserId(userId);
+
+        if (addresses == null || addresses.isEmpty())
+        {
+            return List.of();
+        }
+        else
+        {
+            return addresses.stream().map(AddressDTO::fromEntity).toList();
+        }
     }
 
     public Address addAddress(AddressDTO addressDTO) throws ValidationException, IllegalArgumentException

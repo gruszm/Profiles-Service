@@ -4,6 +4,7 @@ import pl.gruszm.profiles_service.entities.Address;
 
 public class AddressDTO
 {
+    private Long id;
     private Long userId;
     private String street;
     private Short houseNumber;
@@ -12,6 +13,18 @@ public class AddressDTO
     private String city;
     private String voivodeship;
     private String country;
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public AddressDTO setId(Long id)
+    {
+        this.id = id;
+
+        return this;
+    }
 
     public Long getUserId()
     {
@@ -129,7 +142,8 @@ public class AddressDTO
     {
         AddressDTO addressDTO = new AddressDTO();
 
-        addressDTO.setUserId(address.getUserId())
+        addressDTO.setId(address.getId())
+                .setUserId(address.getUserId())
                 .setStreet(address.getStreet())
                 .setHouseNumber(address.getHouseNumber())
                 .setApartmentNumber(address.getApartmentNumber())

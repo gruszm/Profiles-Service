@@ -58,7 +58,7 @@ class AddressServiceTest
         long userId = 0L;
         Address address = new Address();
         List<Address> addressList;
-        List<Address> returnedList;
+        List<AddressDTO> returnedList;
 
         address.setUserId(userId);
         address.setCity("Katowice");
@@ -85,7 +85,7 @@ class AddressServiceTest
         when(addressRepository.findByUserId(userId)).thenReturn(List.of());
 
         // When
-        List<Address> result = addressService.getAddressesByUserId(userId);
+        List<AddressDTO> result = addressService.getAddressesByUserId(userId);
 
         // Then
         assertNotNull(result);

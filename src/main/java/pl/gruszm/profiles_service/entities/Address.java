@@ -47,7 +47,7 @@ public class Address
     @Column(name = "country", nullable = false)
     private String country;
 
-    public long getId()
+    public Long getId()
     {
         return id;
     }

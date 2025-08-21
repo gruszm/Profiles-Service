@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.gruszm.profiles_service.DTOs.AddressDTO;
 import pl.gruszm.profiles_service.DTOs.UserHeader;
-import pl.gruszm.profiles_service.entities.Address;
 import pl.gruszm.profiles_service.services.AddressService;
 
 import java.util.HashMap;
@@ -33,15 +32,15 @@ public class AddressSecureController
         try
         {
             UserHeader userHeader = objectMapper.readValue(userHeaderJson, UserHeader.class);
-            List<Address> addresses = addressService.getAddressesByUserId(userHeader.getId());
+            List<AddressDTO> addressDTOs = addressService.getAddressesByUserId(userHeader.getId());
 
-            if (addresses == null || addresses.isEmpty())
+            if (addressDTOs == null || addressDTOs.isEmpty())
             {
                 return ResponseEntity.notFound().build();
             }
             else
             {
-                return ResponseEntity.ok(addresses);
+                return ResponseEntity.ok(addressDTOs);
             }
         }
         catch (JsonProcessingException e)
@@ -75,7 +74,6 @@ public class AddressSecureController
             userHeader = objectMapper.readValue(userHeaderJson, UserHeader.class);
 
             addressDTO.setUserId(userHeader.getId());
-
             addressService.addAddress(addressDTO);
 
             return ResponseEntity.ok().build();
