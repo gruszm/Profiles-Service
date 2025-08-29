@@ -31,7 +31,7 @@ public class Address
     private Short apartmentNumber;
 
     @NotBlank
-    @Pattern(regexp = "\\d{2}-\\d{3}")
+    @Pattern(regexp = "^\\d{2}-(?!000)\\d{3}$")
     @Column(name = "postal_code", nullable = false)
     private String postalCode;
 

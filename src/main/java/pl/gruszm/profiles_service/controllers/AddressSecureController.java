@@ -4,10 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.gruszm.profiles_service.DTOs.AddressDTO;
 import pl.gruszm.profiles_service.DTOs.UserHeader;
+import pl.gruszm.profiles_service.exceptions.AddressDoesNotBelongToUserException;
 import pl.gruszm.profiles_service.services.AddressService;
 
 import java.util.HashMap;
@@ -23,6 +25,51 @@ public class AddressSecureController
 
     @Autowired
     private AddressService addressService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAddressById(@RequestHeader("X-User") String userHeaderJson, @PathVariable("id") Long addressId)
+    {
+        Map<String, String> errorResponse = new HashMap<>();
+
+        try
+        {
+            UserHeader userHeader = objectMapper.readValue(userHeaderJson, UserHeader.class);
+            AddressDTO addressDTO = addressService.getAddressById(userHeader.getId(), addressId);
+
+            if (addressDTO == null)
+            {
+                return ResponseEntity.notFound().build();
+            }
+            else
+            {
+                return ResponseEntity.ok(addressDTO);
+            }
+        }
+        catch (JsonProcessingException e)
+        {
+            errorResponse.put("message", e.getMessage());
+
+            return ResponseEntity.internalServerError().body(errorResponse);
+        }
+        catch (IllegalArgumentException e)
+        {
+            errorResponse.put("message", e.getMessage());
+
+            return ResponseEntity.badRequest().body(errorResponse);
+        }
+        catch (AddressDoesNotBelongToUserException e)
+        {
+            errorResponse.put("message", e.getMessage());
+
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
+        }
+        catch (Exception e)
+        {
+            errorResponse.put("message", "Internal server error");
+
+            return ResponseEntity.internalServerError().body(errorResponse);
+        }
+    }
 
     @GetMapping
     public ResponseEntity<?> getAddresses(@RequestHeader("X-User") String userHeaderJson)

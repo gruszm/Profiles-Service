@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.gruszm.profiles_service.DTOs.AddressDTO;
 import pl.gruszm.profiles_service.entities.Address;
+import pl.gruszm.profiles_service.exceptions.AddressDoesNotBelongToUserException;
 import pl.gruszm.profiles_service.repositories.AddressRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,25 @@ public class AddressService
 
     @Autowired
     private Validator validator;
+
+    public AddressDTO getAddressById(Long userId, Long addressId) throws AddressDoesNotBelongToUserException, IllegalArgumentException
+    {
+        Optional<Address> addressOptional = addressRepository.findById(addressId);
+
+        if (addressOptional.isEmpty())
+        {
+            return null;
+        }
+
+        AddressDTO addressDTO = AddressDTO.fromEntity(addressOptional.get());
+
+        if (!addressDTO.getUserId().equals(userId))
+        {
+            throw new AddressDoesNotBelongToUserException("Address with id: " + addressId + " does not belong to the user with id: " + userId + ".");
+        }
+
+        return addressDTO;
+    }
 
     public List<AddressDTO> getAddressesByUserId(Long userId) throws IllegalArgumentException
     {
